@@ -1,14 +1,16 @@
 <?php
 /**
  *
+ * @description: 永远爱颍
  *
- * @description:  大一大万大吉！
- * @author: shenzheng
- * @time: 2020/6/10 上午1:24
+ * @author: Shane
  *
+ * @time: 2021/6/4 1:08
  */
 
-//cd /library/WebServer/Documents/swoole_test
+
+namespace app\service;
+
 
 class WS
 {
@@ -65,4 +67,3 @@ class WS
 
 
 }
-new WS();

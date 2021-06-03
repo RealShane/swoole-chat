@@ -24,7 +24,7 @@ return [
         ],
     ],
     'websocket'  => [
-        'enable'        => false,
+        'enable'        => true,
         'handler'       => Handler::class,
         'ping_interval' => 25000,
         'ping_timeout'  => 60000,
