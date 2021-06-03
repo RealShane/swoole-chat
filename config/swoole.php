@@ -44,7 +44,9 @@ return [
             ],
         ],
         'listen'        => [],
-        'subscribe'     => [],
+        'subscribe'     => [
+            app\service\WS::class
+        ],
     ],
     'rpc'        => [
         'server' => [
