@@ -4,6 +4,7 @@ use think\swoole\websocket\socketio\Handler;
 
 return [
 //    'server'     => [
+
 //        'host'      => env('SWOOLE_HOST', '127.0.0.1'), // 监听地址
 //        'port'      => env('SWOOLE_PORT', 80), // 监听端口
 //        'mode'      => SWOOLE_PROCESS, // 运行模式 默认为SWOOLE_PROCESS
