@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="welcome"></div>
+<div>
+    <input type="text" id="input"/>
+    <input type="button" onclick="send()" value="发送"/>
+</div>
+<div id="message"></div>
+<script src="__API__/jquery.min.js"></script>
+<script>
+    var wsServer = 'ws://0.0.0.0:9502';
+    var websocket = new WebSocket(wsServer);
+    websocket.onopen = function (res) {
+        $("#welcome").append(
+            "<h1>连接成功！欢迎</h1>"
+        );
+    };
+
+    websocket.onclose = function (res) {
+        $("#message").append(
+            "<h3>连接关闭</h3>"
+        );
+    };
+
+    websocket.onmessage = function (res) {
+        $("#message").append(
+            "<h3>" + res.data + "</h3>"
+        );
+    };
+
+    websocket.onerror = function (res, e) {
+        $("#message").append(
+            "<h3>" + res + "</h3>"
+        );
+    };
+
+    function send() {
+        websocket.send($("#input").val());
+    }
+</script>
+</body>
+</html>
