@@ -20,6 +20,7 @@ class WS
 {
 
     protected $websocket = null;
+
     protected $server = null;
     protected $redis = null;
 
