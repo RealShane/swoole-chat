@@ -5,6 +5,7 @@ use think\swoole\websocket\socketio\Handler;
 return [
     'server'     => [
         'host'      => '0.0.0.0', // 监听地址
+
         'port'      => 9000, // 监听端口
         'mode'      => SWOOLE_PROCESS, // 运行模式 默认为SWOOLE_PROCESS
         'sock_type' => SWOOLE_SOCK_TCP, // sock type 默认为SWOOLE_SOCK_TCP
