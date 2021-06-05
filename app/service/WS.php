@@ -18,7 +18,7 @@ class WS
     public function __construct(){
         $this -> ws = new Swoole\WebSocket\Server("0.0.0.0", 9000);
         $this -> ws -> set([
-            'task_worker_num' => 4,
+            'task_worker_num' => swoole_cpu_num(),
             'ssl_cert_file' => '/www/server/panel/vhost/cert/apptest.huihuagongxue.top/fullchain.pem',
             'ssl_key_file' => '/www/server/panel/vhost/cert/apptest.huihuagongxue.top/privkey.pem'
         ]);
