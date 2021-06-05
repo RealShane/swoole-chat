@@ -25,12 +25,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'dev-master',
-    'version' => 'dev-master',
+    'pretty_version' => '1.0.0+no-version-set',
+    'version' => '1.0.0.0',
     'aliases' => 
     array (
     ),
-    'reference' => '4e8465d666ed69f94e13b9e45bcf2371156bf36f',
+    'reference' => NULL,
     'name' => 'topthink/think',
   ),
   'versions' => 
@@ -199,12 +199,12 @@ private static $installed = array (
     ),
     'topthink/think' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
+      'pretty_version' => '1.0.0+no-version-set',
+      'version' => '1.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '4e8465d666ed69f94e13b9e45bcf2371156bf36f',
+      'reference' => NULL,
     ),
     'topthink/think-helper' => 
     array (

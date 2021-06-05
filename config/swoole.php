@@ -4,8 +4,8 @@ use think\swoole\websocket\socketio\Handler;
 
 return [
     'server'     => [
-        'host'      => '0.0.0.0', // 监听地址
-        'port'      => 9000, // 监听端口
+        'host'      => env('SWOOLE_HOST', '127.0.0.1'), // 监听地址
+        'port'      => env('SWOOLE_PORT', 80), // 监听端口
         'mode'      => SWOOLE_PROCESS, // 运行模式 默认为SWOOLE_PROCESS
         'sock_type' => SWOOLE_SOCK_TCP, // sock type 默认为SWOOLE_SOCK_TCP
         'options'   => [
@@ -24,9 +24,8 @@ return [
         ],
     ],
     'websocket'  => [
-        'enable'        => true,// 启动websocket
-        'handler' => app\service\ws\Handler::class,
-        'parser' => app\service\ws\Parser::class,
+        'enable'        => false,
+        'handler'       => Handler::class,
         'ping_interval' => 25000,
         'ping_timeout'  => 60000,
         'room'          => [
@@ -45,9 +44,7 @@ return [
             ],
         ],
         'listen'        => [],
-        'subscribe'     => [
-            app\listener\WebSocketEvent::class
-        ],
+        'subscribe'     => [],
     ],
     'rpc'        => [
         'server' => [
@@ -60,7 +57,7 @@ return [
         ],
     ],
     'hot_update' => [
-        'enable'  => true,
+        'enable'  => env('APP_DEBUG', false),
         'name'    => ['*.php'],
         'include' => [app_path()],
         'exclude' => [],
@@ -78,6 +75,11 @@ return [
             'max_wait_time' => 5,
         ],
         //自定义连接池
+    ],
+    //队列
+    'queue'      => [
+        'enable'  => false,
+        'workers' => [],
     ],
     'coroutine'  => [
         'enable' => true,
