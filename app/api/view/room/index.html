@@ -20,6 +20,7 @@
         //创建一个webSocket 实例
     var webSocket  = new  WebSocket('ws://0.0.0.0:9000');
 
+
     webSocket.onerror = function (event){
         onError(event);
     };
