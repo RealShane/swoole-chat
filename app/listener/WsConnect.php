@@ -8,10 +8,10 @@ class WsConnect
     /**
      * 事件监听处理
      *
+     * @param $event
      * @return mixed
      */
-    public function handle($event)
-    {
-        //
+    public function handle($event) {
+        echo json_encode($event);
     }
 }
