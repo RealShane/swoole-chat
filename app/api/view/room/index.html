@@ -7,7 +7,7 @@
 <body>
 <script src="__API__/lib/socket.io.js"></script>
 <script>
-    const socket = io('http://localhost:9000');
+    const socket = io('http://apptest.huihuagongxue.top:9000');
     socket.emit("test", "your message");
     socket.on("test",function(res){console.log(res)});
 </script>
