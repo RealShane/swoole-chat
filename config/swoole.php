@@ -4,8 +4,8 @@ use think\swoole\websocket\socketio\Handler;
 
 return [
     'server'     => [
-        'host'      => env('SWOOLE_HOST', '127.0.0.1'), // 监听地址
-        'port'      => env('SWOOLE_PORT', 80), // 监听端口
+        'host'      => env('SWOOLE_HOST', '0.0.0.0'), // 监听地址
+        'port'      => env('SWOOLE_PORT', 9000), // 监听端口
         'mode'      => SWOOLE_PROCESS, // 运行模式 默认为SWOOLE_PROCESS
         'sock_type' => SWOOLE_SOCK_TCP, // sock type 默认为SWOOLE_SOCK_TCP
         'options'   => [
@@ -24,7 +24,7 @@ return [
         ],
     ],
     'websocket'  => [
-        'enable'        => false,
+        'enable'        => true,
         'handler'       => Handler::class,
         'ping_interval' => 25000,
         'ping_timeout'  => 60000,
@@ -44,7 +44,9 @@ return [
             ],
         ],
         'listen'        => [],
-        'subscribe'     => [],
+        'subscribe'     => [
+            app\service\WS::class
+        ],
     ],
     'rpc'        => [
         'server' => [
