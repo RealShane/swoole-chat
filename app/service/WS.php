@@ -41,11 +41,16 @@ class WS
     }
 
     // 监听客户端发送消息
-    public function onMessage(Server $server,Frame $frame)
+    public function onMessage(Server $server, Frame $frame)
     {
         $fd = $frame->fd; // 为当前连接唯一值
         $msg = json_decode($frame->data , true) ;// 获取cli上传的消息,json格式
         $this->server->push($fd , $msg);// 发送给客户端
+    }
+
+    public function onPoint(Frame $frame, $data){
+        $fd = $frame->fd;
+        $this->server->push($fd , json_encode($data));
     }
 
     //onClose触发的事件

@@ -20,12 +20,7 @@ Route::group('View', function () {
  * 无Token
  */
 Route::group(function () {
-    //论坛
-    Route::rule('forumModular', '/api/Forum/modular', 'POST');
-    Route::rule('articleList', '/api/Forum/articleList', 'POST');
-    Route::rule('article', '/api/Forum/article', 'POST');
-
-    Route::rule('pushSourceExcel', 'api/Source/pushExcel', 'GET');
+    Route::rule('message', '/api/Index/message', 'POST');
 });
 
 
