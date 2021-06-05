@@ -15,31 +15,40 @@ use app\Request;
 use Swoole\Server;
 use think\swoole\Websocket;
 use app\common\business\lib\Redis;
+use Swoole\WebSocket\Frame;
+use think\Container;
 
 class WS
 {
-
     protected $websocket = null;
-
     protected $server = null;
-    protected $redis = null;
 
-    public function __construct(Server $server, Websocket $websocket) {
-        $this -> websocket = $websocket;//依赖注入的方式
-        $this -> server = $server;
-        $this -> redis = new Redis;
+    public function __construct(Server $server, Websocket $websocket, Container $container)
+    {
+        $this->websocket = $websocket;//依赖注入的方式
+        $this->server = $server;
     }
 
-    //onOpen触发的事件,传入的是一个request对象
-    public function onConnect(Request $request) {
-        //通过websocket的上下文取得fd:$this->websocket->getSender()
-        $fd = $this -> websocket -> getSender();
-        $this -> websocket -> push("欢迎客户端： {$fd}\n");
+    public function onConnect(Request $request){}
+
+    // 监听客户连接
+    public function onOpen(Request $request)
+    {
+        $fd = $this->websocket->getSender();// 获取连接标识
+        $this->server->push($fd , 'something');// 发送给客户端
+    }
+
+    // 监听客户端发送消息
+    public function onMessage(Server $server,Frame $frame)
+    {
+        $fd = $frame->fd; // 为当前连接唯一值
+        $msg = json_decode($frame->data , true) ;// 获取cli上传的消息,json格式
+        $this->server->push($fd , $msg);// 发送给客户端
     }
 
     //onClose触发的事件
-    public function onClose() {
-        echo "客户端关闭\n";
+    public function onClose()
+    {
+        // 一般做一些资源释放的动作
     }
-
 }
