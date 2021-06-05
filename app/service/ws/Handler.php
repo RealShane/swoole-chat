@@ -15,10 +15,9 @@ use Swoole\Websocket\Frame;
 use Swoole\WebSocket\Server as WebsocketServer;
 use think\Config;
 use think\Request;
-use think\swoole\contract\websocket\HandlerInterface;
 
 
-class Handler implements HandlerInterface
+class Handler
 {
 
     /** @var WebsocketServer */

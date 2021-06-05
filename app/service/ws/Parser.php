@@ -11,9 +11,8 @@
 
 namespace app\service\ws;
 
-use think\swoole\contract\websocket\ParserInterface;
 
-class Parser implements ParserInterface
+class Parser
 {
 
     /**
