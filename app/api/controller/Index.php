@@ -9,15 +9,5 @@ class Index extends BaseController
     public function index() {
         return View::fetch('room/index');
     }
-    public function message() {
-        echo 1;
-        event('swoole.websocket.Point', [
-            'api' => true,
-            'uid' => $this->request->param('uid'),
-            'to' => $this->request->param('to'),
-            'content' => $this->request->param('content')
-        ]);
-        echo 2;
-    }
 
 }

@@ -38,33 +38,6 @@
       ),
       'reference' => '3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3',
     ),
-    'nette/php-generator' => 
-    array (
-      'pretty_version' => 'v3.5.3',
-      'version' => '3.5.3.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '119f01a7bd590469cb01b538f20a125a28853626',
-    ),
-    'nette/utils' => 
-    array (
-      'pretty_version' => 'v3.2.2',
-      'version' => '3.2.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '967cfc4f9a1acd5f1058d76715a424c53343c20c',
-    ),
-    'open-smf/connection-pool' => 
-    array (
-      'pretty_version' => 'v1.0.16',
-      'version' => '1.0.16.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'f70e47dbf56f1869d3207e15825cf38810b865e0',
-    ),
     'psr/cache' => 
     array (
       'pretty_version' => '1.0.1',
@@ -100,33 +73,6 @@
       array (
       ),
       'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
-    ),
-    'stechstudio/backoff' => 
-    array (
-      'pretty_version' => '1.2',
-      'version' => '1.2.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '816e46107a6be2e1072ba0ff2cb26034872dfa49',
-    ),
-    'swoole/ide-helper' => 
-    array (
-      'pretty_version' => '4.6.7',
-      'version' => '4.6.7.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '0d1409b8274117addfe64d3ea412812a69807411',
-    ),
-    'symfony/finder' => 
-    array (
-      'pretty_version' => 'v5.3.0',
-      'version' => '5.3.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '0ae3f047bed4edff6fd35b26a9a6bfdc92c953c6',
     ),
     'symfony/polyfill-mbstring' => 
     array (
@@ -182,6 +128,15 @@
       ),
       'reference' => NULL,
     ),
+    'topthink/think-captcha' => 
+    array (
+      'pretty_version' => 'v3.0.3',
+      'version' => '3.0.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1eef3717c1bcf4f5bbe2d1a1c704011d330a8b55',
+    ),
     'topthink/think-helper' => 
     array (
       'pretty_version' => 'v3.1.4',
@@ -208,15 +163,6 @@
       array (
       ),
       'reference' => '1119d979b850849f3725856460cf108eec1c3eb8',
-    ),
-    'topthink/think-swoole' => 
-    array (
-      'pretty_version' => 'v3.1.3',
-      'version' => '3.1.3.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'df78b1f6eb6cd8f45f49ab7b0d4cc65595181504',
     ),
     'topthink/think-template' => 
     array (
