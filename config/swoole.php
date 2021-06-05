@@ -26,7 +26,8 @@ return [
     ],
     'websocket'  => [
         'enable'        => true,// 启动websocket
-
+        'handler' => app\service\ws\Handler::class,
+        'parser' => app\service\ws\Parser::class,
         'ping_interval' => 25000,
         'ping_timeout'  => 60000,
         'room'          => [
