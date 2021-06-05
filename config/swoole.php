@@ -48,7 +48,6 @@ return [
         'listen'        => [],
         'subscribe'     => [
             app\listener\WebSocketEvent::class
-
         ],
     ],
     'rpc'        => [
