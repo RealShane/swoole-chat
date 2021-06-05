@@ -1,7 +1,10 @@
 <?php
 
-use think\swoole\websocket\socketio\Handler;
-use think\swoole\websocket\socketio\Parser;
+//use think\swoole\websocket\socketio\Handler;
+//use think\swoole\websocket\socketio\Parser;
+
+use app\service\ws\Handler;
+use app\service\ws\Parser;
 
 return [
     'server'     => [

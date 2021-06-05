@@ -7,19 +7,13 @@
 <body>
 <script src="__API__/lib/jquery.min.js"></script>
 <script>
-    $.ajax({
-        type : "POST",
-        contentType : "application/x-www-form-urlencoded",
-        url : '/api/message',
-        data : {
-            uid : 945,
-            to : 520,
-            content : 6666
-        },
-        success : function(res) {
-            console.log(res);
-        }
-    });
+    $socket = new Websocket('wss://apptest.huihuagongxue.top:9000');
+    // 心跳
+    $socket.send('ping');   // 默认返回pong
+    // 发送数据(固定格式)
+    $socket.send({'event':'login','data':{'username':'abc'}});
+    // 返回格式也是{'event':'',data:''}
+    // 根据需要自己修改`ThinkSwooleWebSocket\Handler`和`ThinkSwooleWebSocket\Parser`
 </script>
 </body>
 </html>
