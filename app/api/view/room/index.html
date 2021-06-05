@@ -1,13 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Document</title>
+    <script src="__API__/lib/jquery.min.js"></script>
+    <script src="__API__/lib/socket.io.js"></script>
 </head>
 <body>
-<script src="__API__/lib/jquery.min.js"></script>
-<script src="__API__/lib/socket.io.js"></script>
+
+消息：<input type="text" id="message">
+接收者：<input type="text" id="to">
+<button onclick="send()">发送</button>
+
 <script>
+    var ws = new WebSocket("wss://0.0.0.0:9000/");
+    ws.onopen = function(){
+        console.log('连接成功');
+    }
+
+    ws.onmessage = function(data){
+        console.log(data);
+    }
+
+    ws.onclose = function(){
+        console.log('连接断开');
+    }
+
+    function send()
+    {
+        var message = document.getElementById('message').value;
+        var to = document.getElementById('to').value;
+        console.log("准备给" + to + "发送数据：" + message);
+        ws.send(JSON.stringify(['test',{
+            //这里可以自己定义属性
+            to:to,
+            message:message
+        }])); //发送的数据必须是 "['test',数据]" 这种格式
+    }
 
 </script>
 </body>

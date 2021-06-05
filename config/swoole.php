@@ -47,7 +47,11 @@ return [
                 'max_wait_time' => 5,
             ],
         ],
-        'listen'        => [],
+        'listen'        => [
+            'connect' => 'app\listener\WsConnect',
+            'close'   => 'app\listener\WsClose',
+            'test'    => 'app\listener\WsTest'
+        ],
         'subscribe'     => [
             app\service\WS::class
         ],
