@@ -21,6 +21,7 @@ use think\Container;
 
 class WS
 {
+
     protected $websocket = null;
     protected $server = null;
 
