@@ -7,9 +7,9 @@
  * @time: 2020/6/10 上午1:24
  *
  */
-namespace shane\base;
+namespace shane\service\base;
 
-use shane\business\Chat;
+use shane\service\business\Chat;
 
 class WS
 {
