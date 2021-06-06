@@ -8,6 +8,7 @@
  * @time: 2021/6/6 0:51
  */
 
+namespace shane\business;
 
 class Chat
 {
