@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<!--    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
     <script src="__API__/js/jquery.min.js"></script>
 </head>
 <body>
@@ -15,12 +13,9 @@
 </div>
 <div id="message"></div>
 <script>
-    eruda.init();
-    console.log('控制台打印信息');
     var wsServer = 'wss://apptest.huihuagongxue.top:9502?token=test-token';
     var websocket = new WebSocket(wsServer);
     websocket.onopen = function (res) {
-        console.log("<h1>连接成功！欢迎</h1>");
         $("#welcome").append(
             "<h1>连接成功！欢迎</h1>"
         );
@@ -33,7 +28,6 @@
     };
 
     websocket.onmessage = function (res) {
-        console.log(res.data);
         $("#message").append(
             "<h3>" + res.data + "</h3>"
         );
