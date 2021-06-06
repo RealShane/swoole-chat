@@ -12,7 +12,10 @@
 </div>
 <div id="message"></div>
 <script src="__API__/lib/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
 <script>
+    eruda.init();
+    console.log('控制台打印信息');
     var wsServer = 'wss://apptest.huihuagongxue.top:9502?token=test-token';
     var websocket = new WebSocket(wsServer);
     websocket.onopen = function (res) {
