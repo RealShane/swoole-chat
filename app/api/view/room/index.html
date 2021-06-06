@@ -14,6 +14,7 @@
 <div id="message"></div>
 <script>
     var wsServer = 'wss://apptest.huihuagongxue.top:9502?token=test-token';
+
     var websocket = new WebSocket(wsServer);
     websocket.onopen = function (res) {
         $("#welcome").append(
