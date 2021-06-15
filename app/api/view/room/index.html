@@ -26,8 +26,7 @@
         };
 
         websocket.onclose = function (res) {
-            console.log("连接关闭正在重连")
-            websocket = new WebSocket(wsServer);
+            relink();
         };
 
         websocket.onmessage = function (res) {
@@ -37,7 +36,7 @@
         };
 
         websocket.onerror = function (res, e) {
-            websocket = new WebSocket(wsServer);
+            relink();
         };
     }
 
