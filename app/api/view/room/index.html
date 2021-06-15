@@ -14,7 +14,7 @@
 <div id="message"></div>
 <script>
     let wsServer = 'wss://apptest.huihuagongxue.top:9502?token=test-token',
-        websocket = null;
+        websocket = new WebSocket(wsServer);
     link();
     function link(){
         websocket = new WebSocket(wsServer);
