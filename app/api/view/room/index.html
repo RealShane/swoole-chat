@@ -37,6 +37,7 @@
         };
 
         websocket.onerror = function (res, e) {
+            console.log(e);
             websocket.close();
             relink();
         };
