@@ -16,6 +16,7 @@
     var wsServer = 'wss://apptest.huihuagongxue.top:9502?token=test-token';
 
     var websocket = new WebSocket(wsServer);
+    console.log(websocket);
     websocket.onopen = function (res) {
         $("#welcome").append(
             "<h1>连接成功！欢迎</h1>"
@@ -34,9 +35,7 @@
     };
 
     websocket.onerror = function (res, e) {
-        $("#message").append(
-            "<h3>" + res + "</h3>"
-        );
+        websocket = new WebSocket(wsServer);
     };
 
     function send() {
