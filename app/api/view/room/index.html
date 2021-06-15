@@ -23,9 +23,8 @@
     };
 
     websocket.onclose = function (res) {
-        $("#message").append(
-            "<h3>连接关闭</h3>"
-        );
+        console.log("连接关闭正在重连")
+        websocket = new WebSocket(wsServer);
     };
 
     websocket.onmessage = function (res) {
