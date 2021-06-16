@@ -17,7 +17,7 @@ class WS
     private $chat = NULL;
 
     public function __construct(){
-//        $this -> chat = new Chat();
+        $this -> chat = new Chat();
         $this -> ws = new Swoole\WebSocket\Server("0.0.0.0", 9502, SWOOLE_PROCESS, SWOOLE_SOCK_TCP | SWOOLE_SSL);
         $this -> ws -> set([
             'task_worker_num' => 4,
@@ -37,7 +37,7 @@ class WS
     }
 
     public function onMessage($ws, $frame){
-//        $this -> chat -> handle($ws, $frame);
+        $this -> chat -> handle($ws, $frame);
     }
 
     public function onTask($server, $task_id, $from_id, $data){
@@ -53,5 +53,5 @@ class WS
 
 
 }
-echo __DIR__ . '/../public/index.php';
+require __DIR__ . '/../public/index.php';
 new WS();
