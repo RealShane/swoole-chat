@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '2015b4644190504634db11e140ed61df4e14f134',
     'name' => 'topthink/think',
   ),
   'versions' => 
@@ -110,6 +110,15 @@
       ),
       'reference' => '31ea689a8e7d2410016b0d25fc15a1ba05a6e2e0',
     ),
+    'textalk/websocket' => 
+    array (
+      'pretty_version' => '1.5.3',
+      'version' => '1.5.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '25f6e322bfaf978a665391efdddc135d4edd60eb',
+    ),
     'topthink/framework' => 
     array (
       'pretty_version' => 'v6.0.8',
@@ -121,12 +130,12 @@
     ),
     'topthink/think' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '2015b4644190504634db11e140ed61df4e14f134',
     ),
     'topthink/think-captcha' => 
     array (

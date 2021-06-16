@@ -29,6 +29,10 @@ class ComposerStaticInit0db61ccf725ed08a9ff03565f9b8c3e4
         array (
             'app\\' => 4,
         ),
+        'W' => 
+        array (
+            'WebSocket\\' => 10,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -78,6 +82,10 @@ class ComposerStaticInit0db61ccf725ed08a9ff03565f9b8c3e4
         'app\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
+        ),
+        'WebSocket\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/textalk/websocket/lib',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
