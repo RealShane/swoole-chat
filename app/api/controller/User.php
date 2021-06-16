@@ -18,6 +18,18 @@ class User extends BaseController
         $this -> business = new Business();
     }
 
+    public function login(){
+        $data['username'] = $this -> request -> param("username", '', 'htmlspecialchars');
+        $data['password'] = $this -> request -> param("password", '', 'htmlspecialchars');
+        try {
+            validate(Validate::class) -> scene("login_register") -> check($data);
+        }catch (\Exception $exception){
+            return $this -> fail($exception -> getMessage());
+        }
+        $this -> business -> login($data);
+        return $this -> success("注册成功！");
+    }
+
     public function register(){
         $data['username'] = $this -> request -> param("username", '', 'htmlspecialchars');
         $data['password'] = $this -> request -> param("password", '', 'htmlspecialchars');
