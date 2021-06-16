@@ -55,4 +55,4 @@ class WS
     }
 
 
-}new WS();
+}
