@@ -41,7 +41,7 @@ class WS
     }
 
     public function onTask($server, $task_id, $from_id, $data){
-        print_r($data);
+        print_r("task:$data");
         sleep(10);
         return 'on task finish'; //调用finish 或者return告诉线程
     }
@@ -53,5 +53,5 @@ class WS
 
 
 }
-new WS();
 echo __DIR__;
+new WS();
