@@ -21,6 +21,10 @@ class User
         $this -> redis = new Redis();
     }
 
+    public function logoff($token){
+        $this -> redis -> delete(config('redis.token_pre') . $token);
+    }
+
     public function login($data){
         $isExist = $this -> userModel -> findByUserNameWithStatus($data['username']);
         if (empty($isExist)){

@@ -18,6 +18,11 @@ class User extends BaseController
         $this -> business = new Business();
     }
 
+    public function logoff(){
+        $this -> business -> logoff($this -> getToken());
+        return $this -> success("退出登陆成功！");
+    }
+
     public function login(){
         $data['username'] = $this -> request -> param("username", '', 'htmlspecialchars');
         $data['password'] = $this -> request -> param("password", '', 'htmlspecialchars');
