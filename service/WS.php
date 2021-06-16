@@ -41,6 +41,7 @@ class WS
 
     public function onMessage($ws, $frame) {
 //        $this -> chat -> handle($ws, $frame);
+        $this -> redis -> set("chenggong", "yes");
     }
 
     public function onTask($ws, $task_id, $src_worker_id, $data){
