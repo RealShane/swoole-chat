@@ -26,6 +26,7 @@ class WS
         ]);
         $this -> ws -> on('open', [$this, "onOpen"]);
         $this -> ws -> on('message', [$this, "onMessage"]);
+        $this -> ws -> on('task', [$this, "onTask"]);
         $this -> ws -> on('close', [$this, "onClose"]);
         $this -> ws -> start();
     }
@@ -37,6 +38,10 @@ class WS
 
     public function onMessage($ws, $frame){
 //        $this -> chat -> handle($ws, $frame);
+    }
+
+    public function onTask(){
+
     }
 
     public function onClose($ws, $fd){
