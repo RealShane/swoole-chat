@@ -8,6 +8,7 @@
  *
  */
 namespace service;
+require __DIR__ . '/../public/index.php';
 use service\business\Chat;
 use app\common\business\lib\Redis;
 use Swoole\WebSocket\Server;
@@ -55,6 +56,4 @@ class WS
 
 
 }
-
-require __DIR__ . '/../public/index.php';
 new WS();
