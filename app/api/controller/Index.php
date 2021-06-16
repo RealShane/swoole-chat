@@ -10,4 +10,9 @@ class Index extends BaseController
         return View::fetch('room/index');
     }
 
+    public function test(){
+        $fp = stream_socket_client("wss://apptest.huihuagongxue.top:9502?token=test-token", $errno, $errstr, 30);
+        halt($fp);
+    }
+
 }

@@ -20,7 +20,7 @@ Route::group('View', function () {
  * 无Token
  */
 Route::group(function () {
-
+    Route::rule('test', 'api/Index/test', 'GET');
 });
 
 
