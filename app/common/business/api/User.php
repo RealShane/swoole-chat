@@ -23,7 +23,8 @@ class User
 
     public function login($data){
         $isExist = $this -> userModel -> findByUserNameWithStatus($data['username']);
-        echo json_encode($isExist);exit();
+        echo json_encode(!empty($isExist));
+        exit();
         if (!empty($isExist)){
             throw new Exception("用户名不存在！");
         }
