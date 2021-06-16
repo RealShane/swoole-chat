@@ -7,9 +7,10 @@
  * @time: 2020/6/10 上午1:24
  *
  */
-
+namespace service;
 use service\business\Chat;
 use app\common\business\lib\Redis;
+use Swoole\WebSocket\Server;
 
 class WS
 {
@@ -21,7 +22,7 @@ class WS
     public function __construct() {
 //        $this -> chat = new Chat();
         $this -> redis = new Redis();
-        $this -> ws = new Swoole\WebSocket\Server("0.0.0.0", 9502, SWOOLE_PROCESS, SWOOLE_SOCK_TCP | SWOOLE_SSL);
+        $this -> ws = new Server("0.0.0.0", 9502, SWOOLE_PROCESS, SWOOLE_SOCK_TCP | SWOOLE_SSL);
         $this -> ws -> set([
             'task_worker_num' => 4,
             'ssl_cert_file' => '/www/server/panel/vhost/cert/apptest.huihuagongxue.top/fullchain.pem',
