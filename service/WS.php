@@ -32,7 +32,7 @@ class WS
     }
 
     public function onOpen($ws, $request){
-        echo $request -> get['token'];
+//        echo $request -> get['token'];
         $ws->push($request -> fd, "欢迎客户端： {$request -> fd}\n");
     }
 
@@ -53,5 +53,5 @@ class WS
 
 
 }
-echo __DIR__;
+echo __DIR__ . '/../public/index.php';
 new WS();
