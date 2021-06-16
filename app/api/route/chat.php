@@ -8,5 +8,5 @@ Route::group('View/Chat', function (){
 });
 
 Route::group('Chat', function (){
-
+    Route::rule('test', '/api/Chat/test', 'POST');
 }) -> middleware(IsLogin::class);
