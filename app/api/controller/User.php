@@ -26,8 +26,8 @@ class User extends BaseController
         }catch (\Exception $exception){
             return $this -> fail($exception -> getMessage());
         }
-        $this -> business -> login($data);
-        return $this -> success("注册成功！");
+        $errCode = $this -> business -> login($data);
+        return $this -> success($errCode);
     }
 
     public function register(){
