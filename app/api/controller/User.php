@@ -18,6 +18,10 @@ class User extends BaseController
         $this -> business = new Business();
     }
 
+    public function isLogin(){
+        return $this -> success("token验证成功！");
+    }
+
     public function logoff(){
         $this -> business -> logoff($this -> getToken());
         return $this -> success("退出登陆成功！");

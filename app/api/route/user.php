@@ -9,4 +9,5 @@ Route::group('User', function (){
 
 Route::group('User', function (){
     Route::rule('logoff', '/api/User/logoff', 'POST');
+    Route::rule('isLogin', '/api/User/isLogin', 'POST');
 }) -> middleware(IsLogin::class);
