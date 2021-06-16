@@ -9,15 +9,18 @@
  */
 
 use service\business\Chat;
+use app\common\business\lib\Redis;
 
 class WS
 {
 
     private $ws = null;
     private $chat = NULL;
+    private $redis = NULL;
 
     public function __construct() {
-        $this -> chat = new Chat();
+//        $this -> chat = new Chat();
+        $this -> redis = new Redis();
         $this -> ws = new Swoole\WebSocket\Server("0.0.0.0", 9502, SWOOLE_PROCESS, SWOOLE_SOCK_TCP | SWOOLE_SSL);
         $this -> ws -> set([
             'task_worker_num' => 4,
@@ -37,7 +40,7 @@ class WS
     }
 
     public function onMessage($ws, $frame) {
-        $this -> chat -> handle($ws, $frame);
+//        $this -> chat -> handle($ws, $frame);
     }
 
     public function onTask($ws, $task_id, $src_worker_id, $data){
