@@ -40,8 +40,10 @@ class WS
 //        $this -> chat -> handle($ws, $frame);
     }
 
-    public function onTask(){
-
+    public function onTask($server, $task_id, $from_id, $data){
+        print_r($data);
+        sleep(10);
+        return 'on task finish'; //调用finish 或者return告诉线程
     }
 
     public function onClose($ws, $fd){
