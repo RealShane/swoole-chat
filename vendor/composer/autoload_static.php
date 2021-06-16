@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit090f19ca889a422df17663de04649261
+class ComposerStaticInit0db61ccf725ed08a9ff03565f9b8c3e4
 {
     public static $files = array (
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
@@ -28,10 +28,6 @@ class ComposerStaticInit090f19ca889a422df17663de04649261
         'a' => 
         array (
             'app\\' => 4,
-        ),
-        'W' => 
-        array (
-            'WebSocket\\' => 10,
         ),
         'S' => 
         array (
@@ -82,10 +78,6 @@ class ComposerStaticInit090f19ca889a422df17663de04649261
         'app\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
-        ),
-        'WebSocket\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/textalk/websocket/lib',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -139,6 +131,7 @@ class ComposerStaticInit090f19ca889a422df17663de04649261
 
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
@@ -147,10 +140,10 @@ class ComposerStaticInit090f19ca889a422df17663de04649261
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit090f19ca889a422df17663de04649261::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit090f19ca889a422df17663de04649261::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr0 = ComposerStaticInit090f19ca889a422df17663de04649261::$fallbackDirsPsr0;
-            $loader->classMap = ComposerStaticInit090f19ca889a422df17663de04649261::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0db61ccf725ed08a9ff03565f9b8c3e4::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0db61ccf725ed08a9ff03565f9b8c3e4::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr0 = ComposerStaticInit0db61ccf725ed08a9ff03565f9b8c3e4::$fallbackDirsPsr0;
+            $loader->classMap = ComposerStaticInit0db61ccf725ed08a9ff03565f9b8c3e4::$classMap;
 
         }, null, ClassLoader::class);
     }
