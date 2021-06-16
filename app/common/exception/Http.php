@@ -4,9 +4,10 @@
 namespace app\common\exception;
 
 
+use think\exception\Handle;
 use think\Response;
 
-class Http
+class Http extends Handle
 {
 
     private $msg = NULL;
