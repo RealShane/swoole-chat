@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '' => array($baseDir . '/extend'),
-    '' => array($baseDir . '/service'),
+    'service' => array($baseDir . '/service'),
 );
