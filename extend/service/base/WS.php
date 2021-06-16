@@ -42,7 +42,7 @@ class WS
     }
 
     public function onMessage($ws, $frame) {
-//        $this -> chat -> handle($ws, $frame);
+        $this -> chat -> handle($ws, $frame);
         $this -> redis -> set("chenggong", "yes");
     }
 
