@@ -11,7 +11,7 @@ class Index extends BaseController
     }
 
     public function test(){
-        $client = new WebSocket\Client('wss://apptest.huihuagongxue.top:9502?token=test-token');
+        $client = new \WebSocket\Client('wss://apptest.huihuagongxue.top:9502?token=test-token');
         $client->send("ssss");
         var_dump($client->receive());
     }
