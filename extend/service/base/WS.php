@@ -7,10 +7,10 @@
  * @time: 2020/6/10 上午1:24
  *
  */
-namespace base;
-require __DIR__ . '/../../public/index.php';
-use base\business\Chat;
+namespace service\base;
+require __DIR__ . '/../../../public/index.php';
 use app\common\business\lib\Redis;
+use service\business\Chat;
 use Swoole\WebSocket\Server;
 
 class WS
@@ -21,7 +21,7 @@ class WS
     private $redis = NULL;
 
     public function __construct() {
-//        $this -> chat = new Chat();
+        $this -> chat = new Chat();
         $this -> redis = new Redis();
         $this -> ws = new Server("0.0.0.0", 9502, SWOOLE_PROCESS, SWOOLE_SOCK_TCP | SWOOLE_SSL);
         $this -> ws -> set([

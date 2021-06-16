@@ -8,7 +8,7 @@
  * @time: 2021/6/6 0:51
  */
 
-namespace base\business;
+namespace service\business;
 
 class Chat
 {
