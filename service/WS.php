@@ -16,7 +16,7 @@ class WS
     private $ws = null;
     private $chat = NULL;
 
-    public function __construct(){
+    public function __construct() {
         $this -> chat = new Chat();
         $this -> ws = new Swoole\WebSocket\Server("0.0.0.0", 9502, SWOOLE_PROCESS, SWOOLE_SOCK_TCP | SWOOLE_SSL);
         $this -> ws -> set([
@@ -31,27 +31,25 @@ class WS
         $this -> ws -> start();
     }
 
-    public function onOpen($ws, $request){
+    public function onOpen($ws, $request) {
 //        echo $request -> get['token'];
-        $ws->push($request -> fd, "欢迎客户端： {$request -> fd}\n");
+        $ws -> push($request -> fd, "欢迎客户端： {$request -> fd}\n");
     }
 
-    public function onMessage($ws, $frame){
+    public function onMessage($ws, $frame) {
         $this -> chat -> handle($ws, $frame);
     }
 
-    public function onTask($server, $task_id, $from_id, $data){
-        print_r("task:$data");
-        sleep(10);
-        return 'on task finish'; //调用finish 或者return告诉线程
+    public function onTask($ws, $task_id, $src_worker_id, $data){
+        return $data;
     }
 
-    public function onClose($ws, $fd){
+    public function onClose($ws, $fd) {
         echo "客户端：{$fd} 关闭\n";
     }
 
 
-
 }
+
 require __DIR__ . '/../public/index.php';
 new WS();
