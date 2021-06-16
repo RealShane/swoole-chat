@@ -60,4 +60,4 @@ class WS
     }
 
 
-}new service\base\WS();
+}new WS();
