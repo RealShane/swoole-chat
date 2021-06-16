@@ -15,6 +15,7 @@ class Index extends BaseController
         $client = new Client('wss://apptest.huihuagongxue.top:9502?token=test-token');
         $client->send("ssss");
         var_dump($client->receive());
+        $client -> close();
     }
 
 }
