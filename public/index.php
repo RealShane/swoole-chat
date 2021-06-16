@@ -13,6 +13,7 @@
 namespace think;
 
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../extend/service/base/WS.php';
 
 // 执行HTTP应用并响应
 $http = (new App())->http;
