@@ -7,9 +7,9 @@
  * @time: 2020/6/10 上午1:24
  *
  */
-namespace service;
-require __DIR__ . '/../public/index.php';
-use service\business\Chat;
+namespace base;
+require __DIR__ . '/../../public/index.php';
+use base\business\Chat;
 use app\common\business\lib\Redis;
 use Swoole\WebSocket\Server;
 
