@@ -38,7 +38,7 @@
         },
         "psr-0": {
             "": "extend/",
-            "service": "service/"
+            "service\\": "service/"
         }
     },
     "config": {
