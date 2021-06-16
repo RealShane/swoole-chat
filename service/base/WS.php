@@ -31,6 +31,7 @@ class WS
         $this -> ws -> on('open', [$this, "onOpen"]);
         $this -> ws -> on('message', [$this, "onMessage"]);
         $this -> ws -> on('task', [$this, "onTask"]);
+        $this -> ws -> on('finish', [$this, "onFinish"]);
         $this -> ws -> on('close', [$this, "onClose"]);
         $this -> ws -> start();
     }
@@ -47,6 +48,10 @@ class WS
 
     public function onTask($ws, $task_id, $src_worker_id, $data){
         return $data;
+    }
+
+    public function onFinish($ws, $task_id, $data){
+
     }
 
     public function onClose($ws, $fd) {
