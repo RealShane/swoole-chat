@@ -25,5 +25,11 @@ return [
             'serialize'  => [],
         ],
         // 更多的缓存连接
+        'redis' => [
+            'type'       => 'redis',
+            'port'       => 6379,
+            'host'       => '127.0.0.1',
+            'select'     => 10,
+        ]
     ],
 ];
