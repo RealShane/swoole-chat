@@ -6,10 +6,10 @@ namespace app\api\controller;
 
 use app\BaseController;
 
-class Index extends BaseController
+class User extends BaseController
 {
 
-    public function index(){
+    public function register(){
         return $this -> success("ssss");
     }
 
