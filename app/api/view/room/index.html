@@ -15,7 +15,9 @@
 <script>
     let socket,
         lockReconnect = false; //避免重复连接
-
+    $(document).ready(function(){
+        getwebsocket();
+    });
     function getwebsocket() { //新建websocket的函数 页面初始化 断开连接时重新调用
         var wsUrl = 'wss://apptest.huihuagongxue.top:9502?token=test-token';
         socket = new WebSocket(wsUrl);
