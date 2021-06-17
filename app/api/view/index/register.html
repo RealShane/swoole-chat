@@ -3,7 +3,44 @@
 <head>
     {include file="public/_meta" /}
 </head>
-<body>
-adadaw
+<body class="layui-card">
+<div style="text-align: center">
+    <form class="layui-form layui-card-body">
+        <div class="layui-form-item layui-inline">
+            <input name="username" type="text" class="layui-form layui-input-inline">
+        </div>
+        <div class="layui-form-item layui-inline">
+            <input name="password" type="password" class="layui-form layui-input-inline">
+        </div>
+        <div class="layui-form-item layui-inline">
+            <button class="layui-btn" lay-submit lay-filter="commit">注册</button>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use('form', function () {
+        var form = layui.form;
+        form.on('submit(commit)', function (res) {
+            $.ajax({
+                type : "POST",
+                contentType : "application/x-www-form-urlencoded",
+                url : '/api/User/register',
+                data : {
+                    username : res.field.username,
+                    password : res.field.password
+                },
+                success : function (res) {
+                    if (res.status === config('failed')){
+                        layer.msg(res.message);
+                    }else if (res.status === config('failed')){
+                        layer.msg(res.result, function (){
+                            $(window).attr('location', '/api/View/User/login');
+                        });
+                    }
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>
