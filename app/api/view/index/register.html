@@ -3,7 +3,7 @@
 <head>
     {include file="public/_meta" /}
 </head>
-<body class="layui-card" style="text-align: center">
+<body class="layui-card">
 <div style="text-align: center">
     <form class="layui-form layui-card-body">
         <div class="layui-form-item layui-inline">
@@ -17,5 +17,31 @@
         </div>
     </form>
 </div>
+<script>
+    layui.use('form', function(){
+        var form = layui.form;
+        form.on('submit(commit)', function(res) {
+            $.ajax({
+                type : "POST",
+                contentType : "application/x-www-form-urlencoded",
+                url : '/api/User/register',
+                data : {
+                    username : res.field.username,
+                    password : res.field.password,
+                },
+                success : function(res) {
+                    if(res.status === config('failed')){
+                        layer.msg(res.message);
+                    }else if(res.status === config('success')){
+                        layer.msg(res.result, function() {
+                            $(window).attr('location', '/api/View/User/login');
+                        });
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
 </body>
 </html>
