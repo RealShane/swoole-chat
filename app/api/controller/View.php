@@ -10,6 +10,10 @@ use think\facade\View as V;
 class View extends BaseController
 {
 
+    public function index(){
+        return V::fetch('index/login');
+    }
+
     public function login(){
         return V::fetch('index/login');
     }

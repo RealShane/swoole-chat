@@ -5,6 +5,7 @@ use app\api\middleware\IsLogin;
 Route::group('View/User', function (){
     Route::rule('register', '/api/View/register', 'GET');
     Route::rule('login', '/api/View/login', 'GET');
+    Route::rule('index', '/api/View/index', 'GET');
 });
 
 Route::group('User', function (){

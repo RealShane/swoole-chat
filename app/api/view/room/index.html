@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="__API__/js/jquery.min.js"></script>
+    {include file="public/_meta" /}
 </head>
 <body>
 <div id="welcome"></div>
@@ -13,6 +11,7 @@
 </div>
 <div id="message"></div>
 <script>
+    isApiLogin();
     let wsServer = 'wss://apptest.huihuagongxue.top:9502?token=test-token',
         websocket = null ,
         lock = false;
