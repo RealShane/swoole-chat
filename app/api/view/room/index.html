@@ -15,6 +15,9 @@
     let wsServer = 'wss://apptest.huihuagongxue.top:9502',
         websocket = null,
         lock = false;
+    $(document).ready(function (){
+        link();
+    });
     function link(){
         websocket = new WebSocket(wsServer);
 
