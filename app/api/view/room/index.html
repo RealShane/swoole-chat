@@ -12,7 +12,7 @@
 <div id="message"></div>
 <script>
     isApiLogin();
-    let wsServer = 'wss://apptest.huihuagongxue.top:9502',
+    let wsServer = 'wss://apptest.huihuagongxue.top:9502?token=' + getApiToken(),
         websocket = null,
         lock = false;
     $(document).ready(function (){
