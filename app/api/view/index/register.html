@@ -32,7 +32,7 @@
                 success : function (res) {
                     if (res.status === config('failed')){
                         layer.msg(res.message);
-                    }else if (res.status === config('failed')){
+                    }else if (res.status === config('success')){
                         layer.msg(res.result, function (){
                             $(window).attr('location', '/api/View/User/login');
                         });
