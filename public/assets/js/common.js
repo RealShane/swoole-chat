@@ -117,7 +117,7 @@ function isApiLogin() {
             if(res.status === config('goto')){
                 layer.msg('登录失效!', function () {
                     $.removeCookie('api_login_token', {path: '/'});
-                    $(window).attr('location', '/api/View/login');
+                    $(window).attr('location', '/api/View/User/login');
                 });
             }
         }
