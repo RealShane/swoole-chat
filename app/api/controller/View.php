@@ -22,4 +22,8 @@ class View extends BaseController
         return V::fetch('index/register');
     }
 
+    public function chatRoom(){
+        return V::fetch('room/index');
+    }
+
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {include file="public/_meta" /}
+</head>
+<body class="layui-card">
+<div id="welcome"></div>
+<div>
+    <input type="text" id="input"/>
+    <input type="button" onclick="send()" value="发送"/>
+</div>
+<div id="message"></div>
+<script>
+    isApiLogin();
+    let wsServer = 'wss://apptest.huihuagongxue.top:9502',
+        websocket = null,
+        lock = false;
+    function link(){
+        websocket = new WebSocket(wsServer);
+
+        websocket.onopen = function (res) {
+            $("#welcome").append(
+                "<h1>连接成功！欢迎</h1>"
+            );
+        };
+
+        websocket.onclose = function (res) {
+            websocket.close();
+            relink();
+        };
+
+        websocket.onmessage = function (res) {
+            $("#message").append(
+                "<h3>" + res.data + "</h3>"
+            );
+        };
+
+        websocket.onerror = function (res, e) {
+            websocket.close();
+            relink();
+        };
+    }
+
+    function send() {
+        websocket.send($("#input").val());
+    }
+
+    function relink(){
+        if (lock){
+            return false;
+        }
+        lock = true;
+        setTimeout(function (){
+            link();
+            lock = false;
+        }, 1000);
+    }
+</script>
+</body>
+</html>
