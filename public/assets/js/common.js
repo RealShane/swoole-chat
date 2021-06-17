@@ -72,7 +72,7 @@ function timestampToTime(timestamp) {
 function config(status) {
     $.ajaxSetup({async : false});
     let res = null;
-    $.getJSON('/XAdmin/js/status.json', function(data) {
+    $.getJSON('/assets/js/status.json', function(data) {
         res = data[status];
     });
     return res;
