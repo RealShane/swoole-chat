@@ -18,7 +18,7 @@ class WS
     public function __construct() {
         $this -> chat = new Chat();
         $this -> redis = new Redis();
-        $this -> ws = new Server("0.0.0.0", 9502);
+        $this -> ws = new Server("0.0.0.0", 9502, SWOOLE_PROCESS, SWOOLE_SOCK_TCP | SWOOLE_SSL);
         $this -> ws -> set([
             'task_worker_num' => 4,
             'ssl_cert_file' => '/www/server/panel/vhost/cert/apptest.huihuagongxue.top/fullchain.pem',
