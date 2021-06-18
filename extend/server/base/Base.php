@@ -24,19 +24,21 @@ class Base
             if (strpos($type, 'chat_uid_') !== false){
                 $this -> setFd($ws, $user['id'], $fd, $type);
             }
-            $this -> success($ws, $fd, $this -> getSocket($user['id']));
         }
     }
 
     public function setFd($ws, $uid, $fd, $type){
         $data = $this -> getSocket($uid);
         $data['fd'][$type] = $fd;
+        $this -> success($ws, $fd, $data);
+        $this -> success($ws, $fd, "<br>");
         foreach ($data['fd'] as $key => $value){
             $info = $ws -> getClientInfo($value);
             if (empty($info['uid']) || $info['uid'] != $uid){
                 unset($data['fd'][$key]);
             }
         }
+        $this -> success($ws, $fd, $data);
         $this -> redis -> set(config('redis.socket_pre') . $uid, $data);
     }
 
