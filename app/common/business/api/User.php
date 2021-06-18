@@ -51,7 +51,7 @@ class User
             'target' => $isExist['id'],
             'message' => $data['message'],
         ];
-        $client = new Client('wss://apptest.huihuagongxue.top:9502?type=public&token=' . $this -> getToken());
+        $client = new Client('wss://apptest.huihuagongxue.top:9502?type=public&token=' . $data['token']);
         $client -> send(json_encode($send));
         $receive = $client -> receive();
         if ($receive['status'] == config('status.success')){
