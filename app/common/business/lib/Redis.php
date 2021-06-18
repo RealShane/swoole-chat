@@ -15,7 +15,6 @@ class Redis
 
     public function __construct($store = 'redis'){
         $this -> setStore($store);
-        echo json_decode(config('cache.stores' . $this -> store));exit();
         $this -> redis = new R(config('cache.stores' . $this -> store));
     }
 

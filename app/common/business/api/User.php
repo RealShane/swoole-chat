@@ -27,7 +27,6 @@ class User
     }
 
     public function handleFriend($data){
-        new Redis();exit();
         $socket = $this -> redis -> get(config('redis.socket_pre') . $data['uid']);
         if (empty($socket['apply_list']) || !array_key_exists($data['target'], $socket['apply_list'])){
             throw new Exception("该好友申请不存在！");
