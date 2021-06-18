@@ -18,6 +18,19 @@ class User extends BaseController
         $this -> business = new Business();
     }
 
+    public function handleFriend(){
+        $data['decision'] = $this -> request -> param("decision", '', 'htmlspecialchars');
+        $data['target'] = $this -> request -> param("target", '', 'htmlspecialchars');
+        $data['uid'] = $this -> getUid();
+        try {
+            validate(Validate::class) -> scene("handleFriend") -> check($data);
+        }catch (\Exception $exception){
+            return $this -> fail($exception -> getMessage());
+        }
+        $this -> business -> handleFriend($data);
+        return $this -> success("好友申请处理完成！");
+    }
+
     public function addFriend(){
         $data['username'] = $this -> request -> param("username", '', 'htmlspecialchars');
         $data['message'] = $this -> request -> param("message", '', 'htmlspecialchars');

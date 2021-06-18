@@ -246,4 +246,16 @@ class Redis extends Driver
         return $this->handler->sMembers($key);
     }
 
+    public function multi(){
+        return $this -> handler -> multi();
+    }
+
+    public function exec(){
+        return $this -> handler -> exec();
+    }
+
+    public function discard(){
+        return $this -> handler -> discard();
+    }
+
 }

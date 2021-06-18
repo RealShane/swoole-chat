@@ -8,6 +8,7 @@ use app\common\business\lib\Str;
 use app\common\model\api\Friend;
 use app\common\model\api\User as UserModel;
 use Exception;
+use think\facade\Db;
 use WebSocket\Client;
 
 class User
@@ -23,6 +24,36 @@ class User
         $this -> friendModel = new Friend();
         $this -> str = new Str();
         $this -> redis = new Redis();
+    }
+
+    public function handleFriend($data){
+        $socket = $this -> redis -> get(config('redis.socket_pre') . $data['uid']);
+        if (empty($socket['apply_list']) || !array_key_exists($data['target'], $socket['apply_list'])){
+            throw new Exception("该好友申请不存在！");
+        }
+        Db::startTrans();
+        try {
+            $this -> redis -> multi();
+            if ((boolean) $data['decision']){
+                $lists = [
+                    [
+                        'uid' => $data['target'],
+                        'fid' => $data['uid']
+                    ], [
+                        'uid' => $data['uid'],
+                        'fid' => $data['target']
+                    ]
+                ];
+                $this -> friendModel -> saveAll($lists);
+            }
+            unset($socket['apply_list'][$data['target']]);
+            $this -> redis -> rset(config('redis.socket_pre') . $data['uid'], $socket);
+            $this -> redis -> exec();
+            Db::commit();
+        } catch (Exception $exception) {
+            $this -> redis -> discard();
+            Db::rollback();
+        }
     }
 
     public function addFriend($data){
