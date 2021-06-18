@@ -53,7 +53,7 @@ class User
         ];
         $client = new Client('wss://apptest.huihuagongxue.top:9502?type=public&token=' . $data['token']);
         $client -> send(json_encode($send));
-        $receive = $client -> receive();
+        $receive = json_decode($client -> receive(), true);
         if ($receive['status'] == config('status.success')){
             $client -> close();
         }
