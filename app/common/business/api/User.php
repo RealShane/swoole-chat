@@ -48,13 +48,13 @@ class User
             }
             unset($socket['apply_list'][$data['target']]);
             $this -> redis -> rset(config('redis.socket_pre') . $data['uid'], $socket);
-            throw new Exception("ccccccc！");
+            throw new Exception();
             $this -> redis -> exec();
             Db::commit();
         } catch (Exception $exception) {
             $this -> redis -> discard();
             Db::rollback();
-            throw new Exception("ccccccc！");
+            throw new Exception("未知异常！");
         }
     }
 
