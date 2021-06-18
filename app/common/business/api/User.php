@@ -48,7 +48,6 @@ class User
             }
             unset($socket['apply_list'][$data['target']]);
             $this -> redis -> rset(config('redis.socket_pre') . $data['uid'], $socket);
-            throw new Exception();
             $this -> redis -> exec();
             Db::commit();
         } catch (Exception $exception) {
