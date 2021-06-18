@@ -35,7 +35,7 @@ class WS extends Base
     }
 
     public function onMessage($ws, $frame) {
-        $this -> chat -> handle($ws, $frame);
+        $this -> chat -> switchboard($ws, $frame);
     }
 
     public function onTask($ws, $task_id, $src_worker_id, $data) {

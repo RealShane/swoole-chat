@@ -14,6 +14,8 @@ Route::group('User', function (){
 });
 
 Route::group('User', function (){
+    Route::rule('handleFriend', '/api/User/handleFriend', 'POST');
+    Route::rule('addFriend', '/api/User/addFriend', 'POST');
     Route::rule('logoff', '/api/User/logoff', 'POST');
     Route::rule('isLogin', '/api/User/isLogin', 'POST');
 }) -> middleware(IsLogin::class);

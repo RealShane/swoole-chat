@@ -18,6 +18,20 @@ class User extends BaseController
         $this -> business = new Business();
     }
 
+    public function addFriend(){
+        $data['username'] = $this -> request -> param("username", '', 'htmlspecialchars');
+        $data['message'] = $this -> request -> param("message", '', 'htmlspecialchars');
+        $data['user'] = $this -> getUser();
+        $data['token'] = $this -> getToken();
+        try {
+            validate(Validate::class) -> scene("addFriend") -> check($data);
+        }catch (\Exception $exception){
+            return $this -> fail($exception -> getMessage());
+        }
+        $this -> business -> addFriend($data);
+        return $this -> success("好友申请已发送！");
+    }
+
     public function isLogin(){
         return $this -> success("token验证成功！");
     }
