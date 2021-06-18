@@ -29,8 +29,8 @@ class Base
 
     public function setFd($ws, $uid, $fd, $type){
         $data = $this -> getSocket($uid);
-        $data['fd'][$type] = $fd;
         $this -> success($ws, $fd, $data);
+        $data['fd'][$type] = $fd;
         $this -> success($ws, $fd, "<br>");
         foreach ($data['fd'] as $key => $value){
             $info = $ws -> getClientInfo($value);
