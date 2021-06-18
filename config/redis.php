@@ -20,6 +20,8 @@ return[
     //登录验证码过期时间
     "code_expire" => 120,
     //文件数据过期时间 15min
-    'file_expire' => 3600 / 4
+    'file_expire' => 3600 / 4,
+    //ws
+    'socket_pre' => "socket_uid_"
 
 ];

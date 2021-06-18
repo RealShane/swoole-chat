@@ -50,7 +50,7 @@ class WS
     }
 
     public function onClose($ws, $fd) {
-        echo "客户端：{$fd} 关闭\n";
+
     }
 
 }new WS();
