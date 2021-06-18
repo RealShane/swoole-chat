@@ -15,7 +15,6 @@ class Redis
 
     public function __construct($store = 'redis'){
         $this -> setStore($store);
-        echo 1;
         $this -> redis = new R(config('cache.stores.' . $this -> store));
     }
 
