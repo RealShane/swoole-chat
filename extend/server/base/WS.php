@@ -4,20 +4,18 @@
 namespace server\base;
 require __DIR__ . '/../../../public/index.php';
 
-use app\common\business\lib\Redis;
 use Swoole\WebSocket\Server;
 use server\business\Chat;
 
-class WS
+class WS extends Base
 {
 
     private $ws = NULL;
     private $chat = NULL;
-    private $redis = NULL;
 
     public function __construct() {
+        parent ::__construct();
         $this -> chat = new Chat();
-        $this -> redis = new Redis();
         $this -> ws = new Server("0.0.0.0", 9502, SWOOLE_PROCESS, SWOOLE_SOCK_TCP | SWOOLE_SSL);
         $this -> ws -> set([
             'task_worker_num' => 4,
@@ -33,13 +31,11 @@ class WS
     }
 
     public function onOpen($ws, $request) {
-        echo $request -> get['token'];
-        $ws -> push($request -> fd, "欢迎客户端： {$request -> fd}\n");
+        $this -> handle($request -> get['token'], $request -> get['type'], $ws, $request -> fd);
     }
 
     public function onMessage($ws, $frame) {
         $this -> chat -> handle($ws, $frame);
-        $this -> redis -> set("chenggong", "yes");
     }
 
     public function onTask($ws, $task_id, $src_worker_id, $data) {
