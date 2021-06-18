@@ -54,6 +54,7 @@ class User
         } catch (Exception $exception) {
             $this -> redis -> discard();
             Db::rollback();
+            throw new Exception("ccccccc！");
         }
     }
 
