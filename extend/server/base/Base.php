@@ -24,7 +24,6 @@ class Base
             if (strpos($type, 'chat_uid_') !== false){
                 $this -> setFd($ws, $user['id'], $fd, $type);
             }
-
         }
     }
 
