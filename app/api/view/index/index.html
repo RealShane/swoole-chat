@@ -153,6 +153,38 @@
             "</li>"
         );
     }
+    function handleFriend(obj, id){
+        layer.confirm('确定要加对方为好友吗？', {
+            icon : 3,
+            title : "注意",
+            btn : ["确定", "不加"],
+        }, function (index){
+            sendHandleFriend(obj, 1, id);
+            layer.close(index);
+        }, function (index){
+            sendHandleFriend(obj, 0, id);
+            layer.close(index);
+        });
+    }
+    function sendHandleFriend(obj, decision, id){
+        $(obj).parents("li").remove();
+        $.ajax({
+            type : "POST",
+            contentType : "application/x-www-form-urlencoded",
+            url : '/api/User/handleFriend',
+            data : {
+                decision : decision,
+                target : id,
+            },
+            success : function (res) {
+                if (res.status === config('failed')){
+                    layer.msg(res.message);
+                }else if (res.status === config('success')){
+                    layer.msg(res.result);
+                }
+            }
+        });
+    }
     function link(){
         websocket = new WebSocket(wsServer);
 
