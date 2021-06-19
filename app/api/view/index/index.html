@@ -44,51 +44,10 @@
         </div>
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">数据统计</div>
+                <div class="layui-card-header">好友申请</div>
                 <div class="layui-card-body ">
-                    <ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
-                        <li class="layui-col-md2 layui-col-xs6">
-                            <a href="javascript:;" class="x-admin-backlog-body">
-                                <h3>文章数</h3>
-                                <p>
-                                    <cite>66</cite></p>
-                            </a>
-                        </li>
-                        <li class="layui-col-md2 layui-col-xs6">
-                            <a href="javascript:;" class="x-admin-backlog-body">
-                                <h3>会员数</h3>
-                                <p>
-                                    <cite>12</cite></p>
-                            </a>
-                        </li>
-                        <li class="layui-col-md2 layui-col-xs6">
-                            <a href="javascript:;" class="x-admin-backlog-body">
-                                <h3>回复数</h3>
-                                <p>
-                                    <cite>99</cite></p>
-                            </a>
-                        </li>
-                        <li class="layui-col-md2 layui-col-xs6">
-                            <a href="javascript:;" class="x-admin-backlog-body">
-                                <h3>商品数</h3>
-                                <p>
-                                    <cite>67</cite></p>
-                            </a>
-                        </li>
-                        <li class="layui-col-md2 layui-col-xs6">
-                            <a href="javascript:;" class="x-admin-backlog-body">
-                                <h3>文章数</h3>
-                                <p>
-                                    <cite>67</cite></p>
-                            </a>
-                        </li>
-                        <li class="layui-col-md2 layui-col-xs6 ">
-                            <a href="javascript:;" class="x-admin-backlog-body">
-                                <h3>文章数</h3>
-                                <p>
-                                    <cite>6766</cite></p>
-                            </a>
-                        </li>
+                    <ul id="friend_list" class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
+
                     </ul>
                 </div>
             </div>
@@ -179,7 +138,20 @@
     });
     function renderApplyList(data){
         console.log(data);
-
+        let message = data['message'];
+        if (empty(message)){
+            message = "对方没有任何留言";
+        }
+        $("#friend_list").append(
+            "<li class=\"layui-col-md2 layui-col-xs6\">" +
+                "<a onclick=\"handleFriend(this, " + data['from'] + ")\" href=\"javascript:;\" class=\"x-admin-backlog-body\">" +
+                    "<h3>来自<span class=\"layui-badge layui-bg-green layuiadmin-badge\">" + data['username'] + "</span>的好友申请</h3>" +
+                    "<p>" +
+                        "<cite>留言：" + message + "</cite>" +
+                    "</p>" +
+                "</a>" +
+            "</li>"
+        );
     }
     function link(){
         websocket = new WebSocket(wsServer);

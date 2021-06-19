@@ -23,6 +23,7 @@ class Chat extends Base
         $socket['apply_list'][$data['uid']] = $data['message'];
         if (!empty($socket['fd']['index'])){
             $this -> success($ws, $socket['fd']['index'], [
+                'type' => 'addFriend',
                 'from' => $data['uid'],
                 'username' => $data['username'],
                 'message' => $data['message']
