@@ -5,14 +5,17 @@ namespace server\base;
 
 
 use app\common\business\lib\Redis;
+use app\common\model\api\User;
 
 class Base
 {
 
     protected $redis = NULL;
+    protected $user = NULL;
 
     public function __construct() {
         $this -> redis = new Redis();
+        $this -> user = new User();
     }
 
     public function handle($token, $type, $ws, $fd){
@@ -24,7 +27,31 @@ class Base
             if (strpos($type, 'chat_uid_') !== false){
                 $this -> setFd($ws, $user['id'], $fd, $type);
             }
+            if ($type == 'index'){
+                $this -> setFd($ws, $user['id'], $fd, $type);
+                $this -> readDelay($ws, $user['id'], $fd);
+            }
         }
+    }
+
+    public function readDelay($ws, $uid, $fd){
+        $data = $this -> getSocket($uid);
+        if (!empty($data['apply_list'])){
+            foreach ($data['apply_list'] as $key => $value){
+                $user = $this -> user -> findByIdWithStatus($key);
+                if (empty($user)){
+                    unset($data['apply_list'][$key]);
+                    continue;
+                }
+                $this -> success($ws, $fd, [
+                    'type' => 'addFriend',
+                    'from' => $key,
+                    'username' => $user['username'],
+                    'message' => $value
+                ]);
+            }
+        }
+        $this -> redis -> set(config('redis.socket_pre') . $uid, $data);
     }
 
     public function setFd($ws, $uid, $fd, $type){

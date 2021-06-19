@@ -16,6 +16,10 @@ class User extends Model
         return $result -> allowField(['last_login_token']) -> save($data);
     }
 
+    public function findByIdWithStatus($id){
+        return $this -> where('id', $id) -> where('status', 1) -> find();
+    }
+
     public function findByUserName($username){
         return $this -> where('username', $username) -> find();
     }
