@@ -1,11 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="x-admin-sm">
 <head>
     {include file="public/_meta" /}
 </head>
-<body class="layui-card">
+<body class="index">
 <script>
     isApiLogin();
+    let wsServer = 'wss://apptest.huihuagongxue.top:9502?type=index&token=' + getApiToken(),
+        websocket = null,
+        lock = false;
+    $(document).ready(function (){
+        link();
+    });
+    function renderApplyList(data){
+        console.log(data);
+
+    }
+    function link(){
+        websocket = new WebSocket(wsServer);
+
+        websocket.onopen = function (res) {
+
+        };
+
+        websocket.onclose = function (res) {
+            websocket.close();
+            relink();
+        };
+
+        websocket.onmessage = function (res) {
+            let data = JSON.parse(res.data)['result'];
+            if (data['type'] === 'addFriend'){
+                renderApplyList(data);
+            }
+        };
+
+        websocket.onerror = function (res, e) {
+            websocket.close();
+            relink();
+        };
+    }
+    function relink(){
+        if (lock){
+            return false;
+        }
+        lock = true;
+        setTimeout(function (){
+            link();
+            lock = false;
+        }, 1000);
+    }
 </script>
 </body>
 </html>
