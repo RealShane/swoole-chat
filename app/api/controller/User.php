@@ -18,6 +18,11 @@ class User extends BaseController
         $this -> business = new Business();
     }
 
+    public function friendList(){
+        $list = $this -> business -> friendList($this -> getUid());
+        return $this -> success($list);
+    }
+
     public function handleFriend(){
         $data['decision'] = $this -> request -> param("decision", '', 'htmlspecialchars');
         $data['target'] = $this -> request -> param("target", '', 'htmlspecialchars');

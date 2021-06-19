@@ -15,7 +15,7 @@
     </ul>
 </div>
 <div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
+    <div class="layui-row layui-col-space15" id="list">
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
@@ -52,58 +52,6 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">下载
-                    <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                <div class="layui-card-body  ">
-                    <p class="layuiadmin-big-font">33,555</p>
-                    <p>新下载
-                        <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">下载
-                    <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                <div class="layui-card-body ">
-                    <p class="layuiadmin-big-font">33,555</p>
-                    <p>新下载
-                        <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">下载
-                    <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                <div class="layui-card-body ">
-                    <p class="layuiadmin-big-font">33,555</p>
-                    <p>新下载
-                        <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-sm6 layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">下载
-                    <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span></div>
-                <div class="layui-card-body ">
-                    <p class="layuiadmin-big-font">33,555</p>
-                    <p>新下载
-                        <span class="layuiadmin-span-color">10%
-                                    <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
-                    </p>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <script>
@@ -112,7 +60,38 @@
         websocket = null,
         lock = false;
     $(document).ready(function (){
+        $.ajax({
+            type : "POST",
+            contentType : "application/x-www-form-urlencoded",
+            url : '/api/User/friendList',
+            success : function (res) {
+                if (res.status === config('failed')){
+                    layer.msg(res.message);
+                    return false;
+                }
+                renderFriendList(res.result);
+            }
+        });
         link();
+        $("#quit").click(function() {
+            $.ajax({
+                type : "POST",
+                contentType : "application/x-www-form-urlencoded",
+                url : '/api/User/logoff',
+                success : function(res) {
+                    if (res.status === config('failed')){
+                        layer.msg(res.message);
+                        return false;
+                    }
+                    if (res.status === config('success')){
+                        layer.msg(res.result, function () {
+                            $.removeCookie('api_login_token', {path: '/'});
+                            $(window).attr('location', '/api/View/User/login');
+                        });
+                    }
+                }
+            });
+        });
     });
     layui.use(['form', 'layer'], function () {
         var form = layui.form,
@@ -136,6 +115,25 @@
             return false;
         })
     });
+    function openChat(uid){
+        window.open('/api/View/Chat/room?uid=' + uid)
+    }
+    function renderFriendList(data){
+        for (let key of data){
+            $("#list").append(
+                "<div onclick='openChat(" + key['fid'] + ")' class=\"layui-col-sm6 layui-col-md3\">" +
+                    "<div class=\"layui-card\">" +
+                        "<div class=\"layui-card-header\">" +
+                            "<span class=\"layui-badge layui-bg-cyan layuiadmin-badge\">" + key['username'] + "</span>" +
+                        "</div>" +
+                        "<div class=\"layui-card-body  \">" +
+                            "<p class=\"layuiadmin-big-font\" id='uid_" + key['fid'] + "'></p>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>"
+            );
+        }
+    }
     function renderApplyList(data){
         console.log(data);
         let message = data['message'];
@@ -157,7 +155,10 @@
         layer.confirm('确定要加对方为好友吗？', {
             icon : 3,
             title : "注意",
-            btn : ["确定", "不加"]
+            btn : ["确定", "不加"],
+            end : function (){
+                location.reload();
+            }
         }, function (index){
             sendHandleFriend(obj, 1, id);
             layer.close(index);

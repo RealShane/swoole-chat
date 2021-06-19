@@ -12,7 +12,9 @@
 <div id="message"></div>
 <script>
     isApiLogin();
-    let wsServer = 'wss://apptest.huihuagongxue.top:9502?type=chat_uid_2&token=' + getApiToken(),
+    let param = getParams(),
+        uid = param.uid,
+        wsServer = 'wss://apptest.huihuagongxue.top:9502?type=chat_uid_' + uid + '&token=' + getApiToken(),
         websocket = null,
         lock = false;
     $(document).ready(function (){
@@ -22,9 +24,7 @@
         websocket = new WebSocket(wsServer);
 
         websocket.onopen = function (res) {
-            $("#welcome").append(
-                "<h1>连接成功！欢迎</h1>"
-            );
+
         };
 
         websocket.onclose = function (res) {

@@ -14,6 +14,7 @@ Route::group('User', function (){
 });
 
 Route::group('User', function (){
+    Route::rule('friendList', '/api/User/friendList', 'POST');
     Route::rule('handleFriend', '/api/User/handleFriend', 'POST');
     Route::rule('addFriend', '/api/User/addFriend', 'POST');
     Route::rule('logoff', '/api/User/logoff', 'POST');
