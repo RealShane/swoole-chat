@@ -157,10 +157,7 @@
         layer.confirm('确定要加对方为好友吗？', {
             icon : 3,
             title : "注意",
-            btn : ["确定", "不加"],
-            end : function () {
-                location.reload();
-            }
+            btn : ["确定", "不加"]
         }, function (index){
             sendHandleFriend(obj, 1, id);
             layer.close(index);
