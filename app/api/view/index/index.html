@@ -158,6 +158,9 @@
             icon : 3,
             title : "注意",
             btn : ["确定", "不加"],
+            end : function () {
+                location.reload();
+            }
         }, function (index){
             sendHandleFriend(obj, 1, id);
             layer.close(index);
