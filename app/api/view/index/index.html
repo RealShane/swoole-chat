@@ -30,6 +30,7 @@
 
         websocket.onmessage = function (res) {
             let data = JSON.parse(res.data)['result'];
+            console.log(data);return ;
             if (data['type'] === 'addFriend'){
                 renderApplyList(data);
             }
