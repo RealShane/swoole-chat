@@ -129,6 +129,12 @@
             'uid' : uid
         };
         websocket.send(JSON.stringify(data));
+        render({
+            'icon' : '&#xe63f;',
+            'sender' : '我',
+            'message' : data['message']
+        });
+        $("#input").val('');
     }
 
     function relink(){
