@@ -58,12 +58,17 @@ class Base
         $data = $this -> getSocket($uid);
         $data['fd'][$type] = $fd;
         foreach ($data['fd'] as $key => $value){
-            $info = $ws -> getClientInfo($value);
-            if (empty($info['uid']) || $info['uid'] != $uid){
+            $bindUid = $this -> getBindUid($ws, $value);
+            if (empty($bindUid) || $bindUid != $uid){
                 unset($data['fd'][$key]);
             }
         }
         $this -> redis -> set(config('redis.socket_pre') . $uid, $data);
+    }
+
+    public function getBindUid($ws, $fd){
+        $info = $ws -> getClientInfo($fd);
+        return empty($info['uid']) ? NULL : $info['uid'];
     }
 
     public function getSocket($uid){

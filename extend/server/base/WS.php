@@ -11,11 +11,11 @@ class WS extends Base
 {
 
     private $ws = NULL;
-    private $chat = NULL;
+    private $business = NULL;
 
     public function __construct() {
         parent ::__construct();
-        $this -> chat = new Chat();
+        $this -> business = new Chat();
         $this -> ws = new Server("0.0.0.0", 9502, SWOOLE_PROCESS, SWOOLE_SOCK_TCP | SWOOLE_SSL);
         $this -> ws -> set([
             'task_worker_num' => 4,
@@ -35,7 +35,7 @@ class WS extends Base
     }
 
     public function onMessage($ws, $frame) {
-        $this -> chat -> switchboard($ws, $frame);
+        $this -> business -> switchboard($ws, $frame);
     }
 
     public function onTask($ws, $task_id, $src_worker_id, $data) {
@@ -46,7 +46,16 @@ class WS extends Base
     }
 
     public function onClose($ws, $fd) {
-
+        $uid = $this -> getBindUid($ws, $fd);
+        if (!empty($uid)){
+            $data = $this -> getSocket($uid);
+            foreach ($data['fd'] as $key => $value){
+                if ($fd == $value){
+                    unset($data['fd'][$key]);
+                }
+            }
+            $this -> redis -> set(config('redis.socket_pre') . $uid, $data);
+        }
     }
 
 }new WS();
