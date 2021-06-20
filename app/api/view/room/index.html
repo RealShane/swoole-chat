@@ -18,6 +18,22 @@
         websocket = null,
         lock = false;
     $(document).ready(function (){
+        $.ajax({
+            type : "POST",
+            contentType : "application/x-www-form-urlencoded",
+            url : '/api/Chat/record',
+            data : {
+                fid : uid
+            },
+            success : function (res) {
+                console.log(res);
+                if (res.status === config('failed')){
+                    layer.msg(res.message);
+                    return false;
+                }
+
+            }
+        });
         link();
     });
     function link(){
