@@ -115,6 +115,13 @@
             return false;
         })
     });
+    function renderDelay(data) {
+        let str = "<span class=\"layui-badge layui-bg-red layuiadmin-badge\">" + data['message'] + "</span>";
+        if (!empty(data['count'])){
+            str += "<span class=\"layui-badge layui-bg-green layuiadmin-badge\">" + data['count'] + "</span>";
+        }
+        $("#uid_" + data['uid']).html(str);
+    }
     function openChat(uid){
         window.open('/api/View/Chat/room?uid=' + uid)
     }
@@ -202,6 +209,9 @@
             let data = JSON.parse(res.data)['result'];
             if (data['type'] === 'addFriend'){
                 renderApplyList(data);
+            }
+            if (data['type'] === 'chat'){
+                renderDelay(data);
             }
         };
 
