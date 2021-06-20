@@ -45,7 +45,12 @@
     }
 
     function send() {
-        websocket.send($("#input").val());
+        let data = {
+            'type' : 'chat',
+            'message' : $("#input").val(),
+            'uid' : uid
+        };
+        websocket.send(JSON.stringify(data));
     }
 
     function relink(){

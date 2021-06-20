@@ -51,6 +51,17 @@ class Base
                 ]);
             }
         }
+        if (!empty($data['delay_list'])){
+            foreach ($data['delay_list'] as $key => $value){
+                $this -> success($ws, $fd, [
+                    'type' => 'chat',
+                    'uid' => $key,
+                    'count' => $value['count'],
+                    'message' => $value['message']
+                ]);
+                unset($data['delay_list'][$key]);
+            }
+        }
         $this -> redis -> set(config('redis.socket_pre') . $uid, $data);
     }
 
