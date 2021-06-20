@@ -79,9 +79,11 @@
         };
 
         websocket.onmessage = function (res) {
-            $("#message").append(
-                "<h3>" + res.data + "</h3>"
-            );
+            render({
+                'icon' : '&#xe612;',
+                'sender' : '对方',
+                'message' : JSON.parse(res.data)['result']['message']
+            });
         };
 
         websocket.onerror = function (res, e) {
