@@ -66,7 +66,6 @@ class Base
         $this -> redis -> set(config('redis.socket_pre') . $uid, $data);
     }
 
-
     public function getSocket($uid){
         return $this -> redis -> get(config('redis.socket_pre') . $uid);
     }
