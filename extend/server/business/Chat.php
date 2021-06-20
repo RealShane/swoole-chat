@@ -46,7 +46,7 @@ class Chat extends Base
                 $socket['delay_list'][$uid]['count'] += 1;
                 $socket['delay_list'][$uid]['message'] = $data['message'];
             }else{
-                $socket['delay_list'] = [
+                $socket['delay_list'][$uid] = [
                     'count' => 1,
                     'message' => $data['message']
                 ];
