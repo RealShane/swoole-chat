@@ -1,15 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="x-admin-sm">
 <head>
     {include file="public/_meta" /}
 </head>
-<body class="layui-card">
-<div id="welcome"></div>
-<div>
-    <input type="text" id="input"/>
-    <input type="button" onclick="send()" value="发送"/>
+<body class="index">
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    //TODO 聊天人名字
+                </div>
+                <div class="layui-card-body ">
+                    <ul class="layui-timeline" id="message">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div id="message"></div>
+<div class="layui-col-md12">
+    <div class="layui-card">
+        <div class="layui-card-body ">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        聊天内容：
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="input" required="" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <button onclick="send()" class="layui-btn">
+                            增加
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     isApiLogin();
     let param = getParams(),
@@ -26,12 +57,11 @@
                 fid : uid
             },
             success : function (res) {
-                console.log(res);
                 if (res.status === config('failed')){
                     layer.msg(res.message);
                     return false;
                 }
-
+                renderRecord(res.result);
             }
         });
         link();
@@ -58,6 +88,38 @@
             websocket.close();
             relink();
         };
+    }
+
+    function renderRecord(data) {
+        for (let key of data){
+            if (Number(key['uid']) === Number(uid)){
+                render({
+                    'icon' : '&#xe612;',
+                    'sender' : '对方',
+                    'message' : key['message']
+                });
+            }else {
+                render({
+                    'icon' : '&#xe63f;',
+                    'sender' : '我',
+                    'message' : key['message']
+                });
+            }
+        }
+    }
+
+    function render(data){
+        $("#message").append(
+            "<li class=\"layui-timeline-item\">" +
+                "<i class=\"layui-icon layui-timeline-axis\">" + data['icon'] + "</i>" +
+                "<div class=\"layui-timeline-content layui-text\">" +
+                    "<h3 class=\"layui-timeline-title\">" + data['sender'] + "</h3>" +
+                    "<p>" +
+                        data['message'] +
+                    "</p>" +
+                "</div>" +
+            "</li>"
+        );
     }
 
     function send() {
