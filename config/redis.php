@@ -1,12 +1,13 @@
 <?php
 /**
  *
+ * @description: 永远爱颍
  *
- * @description:  オラ!オラ!オラ!オラ!
  * @author: Shane
- * @time: 2020/6/19 17:30
  *
+ * @time: 2021/6/21 10:06
  */
+
 return[
 
     //激活Token
