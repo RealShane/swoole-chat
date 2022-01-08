@@ -29,7 +29,6 @@ class WS extends Base
             'ssl_cert_file' => '/www/server/panel/vhost/cert/apptest.huihuagongxue.top/fullchain.pem',
             'ssl_key_file' => '/www/server/panel/vhost/cert/apptest.huihuagongxue.top/privkey.pem',
         ]);
-
         cli_set_process_title("php SwooleMaster: master");
         $this -> ws -> on('open', [$this, "onOpen"]);
         $this -> ws -> on('message', [$this, "onMessage"]);
