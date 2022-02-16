@@ -8,8 +8,7 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">
-                    //TODO 聊天人名字
+                <div class="layui-card-header" id="friend_name">
                 </div>
                 <div class="layui-card-body ">
                     <ul class="layui-timeline" id="message">
@@ -61,7 +60,8 @@
                     layer.msg(res.message);
                     return false;
                 }
-                renderRecord(res.result);
+                $("#friend_name").append(res.result['name']);
+                renderRecord(res.result['record']);
             }
         });
         link();

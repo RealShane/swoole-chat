@@ -11,14 +11,17 @@
 namespace app\common\business\api;
 
 use app\common\model\api\Chat as ChatModel;
+use app\common\model\api\User as UserModel;
 
 class Chat
 {
 
     private $chatModel = NULL;
+    private $userModel = NULL;
 
     public function __construct() {
         $this -> chatModel = new ChatModel();
+        $this -> userModel = new UserModel();
     }
 
     public function record($data){
@@ -27,7 +30,11 @@ class Chat
         $all = array_merge($myRecord, $friendRecord);
         $key = array_column($all, 'create_time');
         array_multisort($key, SORT_ASC, $all);
-        return $all;
+        $friend = $this -> userModel -> findByIdWithStatus($data['fid']);
+        return [
+            "name" => $friend['username'],
+            "record" => $all
+        ];
     }
 
 }
