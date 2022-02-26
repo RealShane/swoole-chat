@@ -13,9 +13,18 @@ namespace server\business;
 
 use server\base\Base;
 use app\common\model\api\Chat as Model;
+use app\common\model\api\Friend;
 
 class Chat extends Base
 {
+
+    private $chatModel = NULL;
+    private $friendModel = NULL;
+
+    public function __construct(){
+        $this -> chatModel = new Model();
+        $this -> friendModel = new Friend();
+    }
 
     public function switchboard($ws, $frame){
         $data = json_decode($frame -> data, true);
@@ -31,7 +40,11 @@ class Chat extends Base
 
     private function chat($ws, $fd, $data){
         $uid = $this -> getBindUid($ws, $fd);
-        (new Model()) -> insert([
+        if (!$this -> friendModel -> isFriend($uid, $data['uid'])){
+            $this -> fail($ws, $fd, "该用户不是好友！");
+            return ;
+        }
+        $this -> chatModel -> insert([
             'uid' => $uid,
             'fid' => $data['uid'],
             'message' => $data['message'],
