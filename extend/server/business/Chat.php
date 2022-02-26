@@ -22,6 +22,7 @@ class Chat extends Base
     private $friendModel = NULL;
 
     public function __construct(){
+        parent ::__construct();
         $this -> chatModel = new Model();
         $this -> friendModel = new Friend();
     }
