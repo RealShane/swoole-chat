@@ -79,6 +79,7 @@
         };
 
         websocket.onmessage = function (res) {
+            console.log(res.data);
             render({
                 'icon' : '&#xe612;',
                 'sender' : '对方',
