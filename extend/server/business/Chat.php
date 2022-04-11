@@ -10,7 +10,6 @@
 
 namespace server\business;
 
-
 use server\base\Base;
 use app\common\model\api\Chat as Model;
 use app\common\model\api\Friend;
