@@ -1,5 +1,8 @@
 # @author: Shane
 
+# 我的视频地址
+    * B站：https://www.bilibili.com/video/BV1Gt4y1y7S3/
+
 # ThinkPHP6 + Swoole4 制作简易聊天室
 
 * 注意：
